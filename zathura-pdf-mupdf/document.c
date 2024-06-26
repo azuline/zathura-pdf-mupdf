@@ -9,18 +9,6 @@
 
 #define LENGTH(x) (sizeof(x)/sizeof((x)[0]))
 
-fz_font *load_system_font(fz_context *ctx, const char *name, int bold, int italic, int needs_exact_metrics) {
-  char *font_path = NULL;
-  if (!strcmp(name, "EB Garamond")) {
-    if (bold && italic) font_path = "/home/blissful/fonts/collection/Google/EBGaramond-BoldItalic.ttf";
-    else if (bold) font_path = "/home/blissful/fonts/collection/Google/EBGaramond-Bold.ttf";
-    else if (italic) font_path = "/home/blissful/fonts/collection/Google/EBGaramond-Italic.ttf";
-    else font_path = "/home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf";
-  }
-  if (font_path = NULL) return NULL;
-  return fz_new_font_from_file(ctx, name, font_path, bold, italic);
-}
-
 zathura_error_t
 pdf_document_open(zathura_document_t* document)
 {
@@ -42,11 +30,15 @@ pdf_document_open(zathura_document_t* document)
     goto error_free;
   }
 
-  // Font loading
-  fz_install_load_system_font_funcs(mupdf_document->ctx, load_system_font, NULL, NULL);
-  // Custom styles.
-  // See: https://github.com/ccxvii/mupdf/blob/master/source/html/html-parse.c#L35
-  const char *css = "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; src: /home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf; }";
+  // Custom styles. See:
+  // - https://pymupdf.readthedocs.io/en/latest/recipes-text.html#how-to-specify-your-own-fonts
+  // - https://github.com/ccxvii/mupdf/blob/master/source/html/html-parse.c#L35
+  const char *css = 
+      "@font-face { font-family: \"EB Garamond\"; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf); }\n"
+      "@font-face { font-family: \"EB Garamond\"; font-weight: bold; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Bold.ttf); }\n"
+      "@font-face { font-family: \"EB Garamond\"; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Italic.ttf); }\n"
+      "@font-face { font-family: \"EB Garamond\"; font-weight: bold; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-BoldItalic.ttf); }\n"
+      "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }";
   fz_set_user_css(mupdf_document->ctx, css);
 
   /* open document */
