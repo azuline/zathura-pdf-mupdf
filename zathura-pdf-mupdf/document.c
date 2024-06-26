@@ -30,6 +30,15 @@ pdf_document_open(zathura_document_t* document)
     goto error_free;
   }
 
+  fz_font *font = fz_new_font_from_file(mupdf_document->ctx, NULL, "/home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf", 0, 0);
+  if (!font) {
+    error = ZATHURA_ERROR_INVALID_ARGUMENTS;
+    goto error_free;
+  }
+  const char *css =
+      "* { font-family: \"EB Garamond\" }";
+  fz_set_user_css(mupdf_document->ctx, css);
+
   /* open document */
   const char* path     = zathura_document_get_path(document);
   const char* password = zathura_document_get_password(document);
