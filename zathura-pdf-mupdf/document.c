@@ -38,7 +38,9 @@ pdf_document_open(zathura_document_t* document)
       "@font-face { font-family: \"EB Garamond\"; font-weight: bold; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Bold.ttf); }\n"
       "@font-face { font-family: \"EB Garamond\"; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Italic.ttf); }\n"
       "@font-face { font-family: \"EB Garamond\"; font-weight: bold; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-BoldItalic.ttf); }\n"
-      "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }";
+      "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }\n"
+      "p { margin: 0.5em 0; }\n"
+      ;
   fz_set_user_css(mupdf_document->ctx, css);
 
   /* open document */
