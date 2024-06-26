@@ -38,7 +38,7 @@ pdf_document_open(zathura_document_t* document)
   }
   // See: https://github.com/ccxvii/mupdf/blob/master/source/html/html-parse.c#L35
   const char *css =
-      "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }";
+      "@page { font-family: \"IBM Plex Mono\"; line-height: 1.4; margin: 2em 6em; }";
   fz_set_user_css(mupdf_document->ctx, css);
 
   /* open document */
