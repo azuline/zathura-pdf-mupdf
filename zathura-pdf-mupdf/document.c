@@ -46,7 +46,7 @@ pdf_document_open(zathura_document_t* document)
   fz_install_load_system_font_funcs(mupdf_document->ctx, load_system_font, NULL, NULL);
   // Custom styles.
   // See: https://github.com/ccxvii/mupdf/blob/master/source/html/html-parse.c#L35
-  const char *css = "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }";
+  const char *css = "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; src: /home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf; }";
   fz_set_user_css(mupdf_document->ctx, css);
 
   /* open document */
