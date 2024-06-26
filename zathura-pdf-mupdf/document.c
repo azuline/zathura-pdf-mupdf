@@ -30,13 +30,15 @@ pdf_document_open(zathura_document_t* document)
     goto error_free;
   }
 
-  fz_font *font = fz_new_font_from_file(mupdf_document->ctx, NULL, "/home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf", 0, 0);
+  /* Custom styles. */
+  fz_font *font = fz_new_font_from_file(mupdf_document->ctx, "EB Garamond", "/home/blissful/fonts/collection/Google/EBGaramond-Regular.ttf", 0, 0);
   if (!font) {
     error = ZATHURA_ERROR_INVALID_ARGUMENTS;
     goto error_free;
   }
+  // See: https://github.com/ccxvii/mupdf/blob/master/source/html/html-parse.c#L35
   const char *css =
-      "* { font-family: \"EB Garamond\" }";
+      "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }";
   fz_set_user_css(mupdf_document->ctx, css);
 
   /* open document */
