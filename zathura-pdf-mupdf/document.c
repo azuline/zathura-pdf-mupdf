@@ -38,9 +38,11 @@ zathura_error_t pdf_document_open(zathura_document_t* document) {
       "@font-face { font-family: \"EB Garamond\"; font-weight: bold; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Bold.ttf); }\n"
       "@font-face { font-family: \"EB Garamond\"; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-Italic.ttf); }\n"
       "@font-face { font-family: \"EB Garamond\"; font-weight: bold; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-BoldItalic.ttf); }\n"
-      "@page { font-family: \"EB Garamond\" !important; line-height: 1.4; margin: 2em 6em; }\n"
+      "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }\n"
+      "body { font-family: \"EB Garamond\" !important; }\n"
       "p { margin: 0.5em 0; }\n"
-      "aside { display: block; margin: 1em 40px; }\n"
+      "aside { display: block; margin: 1em; line-height: 1.3; }\n"
+      "blockquote { display: block; margin: 1em; line-height: 1.3; }\n"
       ;
   fz_set_user_css(mupdf_document->ctx, css);
 
