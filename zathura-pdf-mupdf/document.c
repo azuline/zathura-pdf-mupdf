@@ -40,6 +40,8 @@ zathura_error_t pdf_document_open(zathura_document_t* document) {
       "@font-face { font-family: \"EB Garamond\"; font-weight: bold; font-style: italic; src: url(/home/blissful/fonts/collection/Google/EBGaramond-BoldItalic.ttf); }\n"
       "@page { font-family: \"EB Garamond\"; line-height: 1.4; margin: 2em 6em; }\n"
       "p { margin: 0.5em 0; }\n"
+      "blockquote { font-size: 0.85rem; line-height: 1.2; margin: 0.5em 0.75em }\n"
+      "aside { font-size: 0.85rem; line-height: 1.2; margin: 0.5em 0.75em }\n"
       ;
   fz_set_user_css(mupdf_document->ctx, css);
 
